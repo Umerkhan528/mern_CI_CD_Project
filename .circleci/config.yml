@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            docker build -t hvzjee/demo_nodejs_webpage:circleci .
+            docker build -t hvzjee/demo_nodejs_webpage:circleci ./mern/frontend/
 
       - run:
           name: Push Docker image
