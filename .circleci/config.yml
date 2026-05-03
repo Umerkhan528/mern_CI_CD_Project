@@ -19,12 +19,12 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            docker build -t hvzjee/demo_nodejs_webpage:circleci ./mern/frontend/
+            docker build -t muhammadumer321/mern-frontend:circleci2 ./mern/frontend/
 
       - run:
           name: Push Docker image
           command: |
-            docker push hvzjee/demo_nodejs_webpage:circleci
+            docker push muhammadumer321/mern-frontend:circleci2
 
 workflows:
   build-and-deploy:
