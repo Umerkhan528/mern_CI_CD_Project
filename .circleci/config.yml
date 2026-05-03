@@ -1,0 +1,36 @@
+version: 2.1
+
+jobs:
+  build-and-push:
+    docker:
+      - image: cimg/base:stable
+
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      - run:
+          name: Log in to Docker Hub
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+      - run:
+          name: Build Docker image
+          command: |
+            docker build -t hvzjee/demo_nodejs_webpage:circleci .
+
+      - run:
+          name: Push Docker image
+          command: |
+            docker push hvzjee/demo_nodejs_webpage:circleci
+
+workflows:
+  build-and-deploy:
+    jobs:
+      - build-and-push:
+          filters:
+            branches:
+              only:
+                - development
